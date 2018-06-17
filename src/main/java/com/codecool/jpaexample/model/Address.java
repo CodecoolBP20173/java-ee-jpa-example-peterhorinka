@@ -2,13 +2,13 @@ package com.codecool.jpaexample.model;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String country;
+    @Column(length = 4) //name="Zip" cannot resolve column Zip
     private String zipcode;
     private String city;
     private String addr;
