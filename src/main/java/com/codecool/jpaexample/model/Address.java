@@ -8,19 +8,31 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String country;
-    @Column(length = 4) //name="Zip" cannot resolve column Zip
+    @Column(name = "zip",length = 4) //name="Zip" cannot resolve column Zip
     private String zipcode;
     private String city;
     private String addr;
+
+    @OneToOne
+    private Student student;
 
     public Address() {
     }
 
     public Address(String country, String zipcode, String city, String addr) {
         this.country = country;
-        this.zipcode = zipcode;
+        this.zipcode = zipcode;id
         this.city = city;
         this.addr = addr;
+    }
+
+    @OneToOne() //mappedBy didn't change anything?
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public long getId() {

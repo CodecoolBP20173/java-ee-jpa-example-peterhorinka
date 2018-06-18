@@ -29,24 +29,29 @@ public class Student {
     private Address address;
 
     @ElementCollection
-    @CollectionTable(name ="Phone") //??
-    private List<String>phoneNumbers;
+    @CollectionTable(name ="Phone")
+    @Column(name = "phoneNumber")
+    private List<String>phoneNumbers = new ArrayList<>();
 
     public Student() {
     }
 
-    public Student(String name, String email, Date dateOfBirth, String phoneNumber) {
+    public Student(String name, String email, Date dateOfBirth) {
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.age = (Calendar.getInstance().getTimeInMillis() - dateOfBirth.getTime())
                 / (60L * 60L * 1000L * 24L * 365L);
-        this.phoneNumbers.add(phoneNumber);
     }
 
     public Student(String name, String email, Date dateOfBirth, Address address) {
         this(name, email, dateOfBirth);
         this.address = address;
+    }
+
+    public Student(String name, String email, Date dateOfBirth,  Address address, String phoneNumber) {
+        this(name, email, dateOfBirth, address);
+        phoneNumbers.add(phoneNumber);
     }
 
     public long getId() {
